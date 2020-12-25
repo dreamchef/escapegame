@@ -7,6 +7,7 @@
 # --Enemy may detect you when your flashlight is on.
 # ============================================================= */
 from random import randint
+from methods import *
 
 objects = ['mirror',
         'painting',
@@ -30,11 +31,20 @@ lightOn = False
 lightToggled = False
 moved = True
 combosFound = ['False', 'False', 'False', 'False']
-escaped = False
-caught = False
+outcome = 0
 
 print("\nYou don't remember how you got here, but have a feeling you shouldn't stay.  And you think you hear someone lurking around...\n")
 print("\nCONTROLS: Enter...\n 'w' to move up a floor\n 's' to move down\n")
 print(" 'f' to toggle flashlight\n 'e' to inspect an object\n 'q' to quit\n")
 print(" '1','2', or '3' to choose object when prompted\n")
 print("\n============ ESCAPE GAME =============\n\n")
+
+while(outcome == 0):
+     if(moved):
+         printFloor()
+
+         if(lightOn):
+            if(floor == 1):
+                print("The front door is locked by four padlocks.")
+                print("You see the following objects: ")
+                printObjects(objectsMap[floor]);
