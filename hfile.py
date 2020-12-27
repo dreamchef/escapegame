@@ -37,16 +37,16 @@ def makeMap():
 
 def printFloor(floor):
     if floor == 0:
-            print("You're now in the basement. ")
+            print("You're now in the basement. ",end='')
     elif floor == 1:
-            print("You're now on the ground floor. ")
+            print("You're now on the ground floor. ",end='')
     elif floor == 2:
-            print("You're now on the second floor. ")
+            print("You're now on the second floor. ",end='')
     elif floor == 3:
-            print("You're now in the attic. ")
+            print("You're now in the attic. ",end='')
 
 def printObjects(objects):
-    print("You see the following objects: ")
+    print("You see the following objects: ",end='')
     for i in range(len(objects)):
         print(" " + str(i) + " " + objects[i].name)
-    printf(". ");
+    printf(". ",end='');
