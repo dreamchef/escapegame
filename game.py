@@ -9,7 +9,6 @@
 from hfile import *
 
 floor = randint(0,3)
-#currentAction
 actions = 0
 lightOn = False
 lightToggled = False
@@ -27,7 +26,7 @@ print("\n============ ESCAPE GAME =============\n\n")
 
 while(outcome == 0):
      if(moved):
-         printFloor()
+         printFloor(floor)
 
          if(lightOn):
             if(floor == 1):

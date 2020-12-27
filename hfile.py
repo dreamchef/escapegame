@@ -35,6 +35,12 @@ def makeMap():
 
     return map
 
-
-def printFloor():
-    return 0;
+def printFloor(floor):
+    if floor == 0:
+            print("You're now in the basement. ")
+    elif floor == 1:
+            print("You're now on the ground floor. ")
+    elif floor == 2:
+            print("You're now on the second floor. ")
+    elif floor == 3:
+            print("You're now in the attic. ")
