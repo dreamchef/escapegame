@@ -44,3 +44,9 @@ def printFloor(floor):
             print("You're now on the second floor. ")
     elif floor == 3:
             print("You're now in the attic. ")
+
+def printObjects(objects):
+    print("You see the following objects: ")
+    for i in range(len(objects)):
+        print(" " + str(i) + " " + objects[i].name)
+    printf(". ");

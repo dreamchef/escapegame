@@ -25,11 +25,14 @@ print(" '1','2', or '3' to choose object when prompted\n")
 print("\n============ ESCAPE GAME =============\n\n")
 
 while(outcome == 0):
-     if(moved):
-         printFloor(floor)
+    if(moved):
+        printFloor(floor)
 
-         if(lightOn):
+    if(moved or lightToggled):
+        if(lightOn):
             if(floor == 1):
                 print("The front door is locked by four padlocks.")
-                print("You see the following objects: ")
-                #printObjects(objectsMap[floor]);
+                print("You see the following objects:")
+            printObjects(map[floor]);
+        else:
+            print("It's too dark to see anything")
