@@ -8,7 +8,7 @@
 # ============================================================= */=
 from hfile import *
 
-floor = randint(0,4)
+floor = randint(0,3)
 #currentAction
 actions = 0
 lightOn = False
