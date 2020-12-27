@@ -5,24 +5,8 @@
 # --Four lock combations are needed to unlock the front door and escape.
 # --Combinations are hidden in objects on each floor.
 # --Enemy may detect you when your flashlight is on.
-# ============================================================= */
-from random import randint
-from methods import *
-
-objects = ['mirror',
-        'painting',
-        'chest',
-        'bookshelf',
-        'cage',
-        'piano',
-        'couch',
-        'cabinet',
-        'table',
-        'desk',
-        'barrel',
-        'armchair']
-
-# objectsMap
+# ============================================================= */=
+from hfile import *
 
 floor = randint(0,4)
 #currentAction
@@ -32,6 +16,8 @@ lightToggled = False
 moved = True
 combosFound = ['False', 'False', 'False', 'False']
 outcome = 0
+
+map = makeMap();
 
 print("\nYou don't remember how you got here, but have a feeling you shouldn't stay.  And you think you hear someone lurking around...\n")
 print("\nCONTROLS: Enter...\n 'w' to move up a floor\n 's' to move down\n")
@@ -47,4 +33,4 @@ while(outcome == 0):
             if(floor == 1):
                 print("The front door is locked by four padlocks.")
                 print("You see the following objects: ")
-                printObjects(objectsMap[floor]);
+                #printObjects(objectsMap[floor]);
