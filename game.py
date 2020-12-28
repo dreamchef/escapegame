@@ -43,7 +43,44 @@ while(outcome == 0):
 
     # Part 2: Action
     print("You decide to ... ",end='');
-    currentAction = input()
+    action = input()
     print()
 
     # Part 3: Change
+    if(action == 'up' or action == 'down'):
+        if(floor != movePlayer(action,floor)):
+            floor = movePlayer(action,floor)
+            moved = True;
+        if(lightOn == true):
+            pass
+            # check for detection
+
+    elif(action == 'inspect'):
+        if(lightOn == true):
+            print("... inspect the ... ",end='')
+            targetObject = input()
+            inspect(floor, combinationsFound, objectsMap);
+            # check for detection
+        else:
+            print("... inspect an object, but it's too dark to see what's in the room.  Maybe if you turned on your flashlight... ",end='')
+
+    }
+    else if(action == 'f') {
+        toggleFlashlight(&flashlightOn);
+        flashlightToggled = true;
+    }
+    else if(action == 'q') {
+        return 0;
+    }
+    else {
+        printf("... review the controls. ");
+    }
+
+    // Final chance of being detected during escape
+    if(floor == 1 && combinationsFound[0] == true && combinationsFound[1] == true &&
+        combinationsFound[2] == true && combinationsFound[3] == true && flashlightOn) {
+        printf("You approach the front door. Hands shaking, you enter the combinations. ");
+        caught = detectedRisk(floor, &flashlightOn, objectsMap);
+        escaped = !caught;
+    }
+    *actions = *actions + 1;

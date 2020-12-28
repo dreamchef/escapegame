@@ -50,3 +50,21 @@ def printObjects(objects):
     for i in range(len(objects)):
         print(" " + str(i) + " " + objects[i].name)
     printf(". ",end='');
+
+def movePlayer(direction, floor):
+    if (direction == 'move up'):
+        if(floor > FLOORS-2):
+            print("... move, but you're already on the top floor. ")
+            return floor
+        else:
+            print("... sneak up the stairs. ")
+            return floor + 1
+    elif (direction == 'move down'):
+        if(floor < 1):
+            print("... move, but you're already on the top floor. ")
+            return floor
+        else:
+            print("... sneak up the stairs. ")
+            return floor + 1
+    else:
+        print("DEBUG: Invalid direction")
