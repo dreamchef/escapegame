@@ -2,6 +2,7 @@ FLOORS = 4
 OBJECTS = 3
 
 from random import *
+import sys
 
 class Object:
     def __init__(self, name,combination):
@@ -48,8 +49,8 @@ def printFloor(floor):
 def printObjects(objects):
     print("You see the following objects: ",end='')
     for i in range(len(objects)):
-        print(" " + str(i) + " " + objects[i].name)
-    printf(". ",end='');
+        print(" [" + str(i+1) + "] " + objects[i].name,end='')
+    print(". ",end='');
 
 def movePlayer(direction, floor):
     if (direction == 'move up'):
@@ -64,7 +65,18 @@ def movePlayer(direction, floor):
             print("... move, but you're already on the top floor. ")
             return floor
         else:
-            print("... sneak up the stairs. ")
-            return floor + 1
+            print("... sneak down the stairs. ")
+            return floor - 1
     else:
         print("DEBUG: Invalid direction")
+
+def switchLight(lightOn):
+    if(lightOn == True):
+        print(" your flashlight off. ",end='')
+    else:
+        print(" your flashlight on. ",end='')
+    return not lightOn
+
+def detected(floor,map):
+    #TODO: implement
+    pass

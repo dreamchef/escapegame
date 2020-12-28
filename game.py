@@ -11,25 +11,25 @@ from hfile import *
 floor = randint(0,3)
 actions = 0
 lightOn = False
-lightToggled = False
+lightSwitched = False
 moved = True
-combosFound = ['False', 'False', 'False', 'False']
+comboFound = ['False', 'False', 'False', 'False']
 outcome = 0
 
 map = makeMap();
 
 print("\nYou don't remember how you got here, but have a feeling you shouldn't stay.  And you think you hear someone lurking around...\n")
-print("\nCONTROLS: Enter...\n 'w' to move up a floor\n 's' to move down\n")
-print(" 'f' to toggle flashlight\n 'e' to inspect an object\n 'q' to quit\n")
+print("\nACTIONS:\n 'move up'\n 'move down'\n")
+print(" 'switch' (flashlight on/off)\n 'inspect' (an object)\n 'quit'\n")
 print(" '1','2', or '3' to choose object when prompted\n")
 print("\n============ ESCAPE GAME =============\n\n")
 
 while(outcome == 0):
-    # Part 1: State
+    # State information
     if(moved):
         printFloor(floor)
 
-    if(moved or lightToggled):
+    if(moved or lightSwitched):
         if(lightOn):
             if(floor == 1):
                 print("The front door is locked by four padlocks. ",end='')
@@ -39,48 +39,53 @@ while(outcome == 0):
             print("It's too dark to see anything. ",end='')
 
     moved = False;
-    lightToggled = False;
+    lightSwitched = False;
 
-    # Part 2: Action
+    # Action selection
     print("You decide to ... ",end='');
     action = input()
     print()
 
-    # Part 3: Change
-    if(action == 'up' or action == 'down'):
-        if(floor != movePlayer(action,floor)):
-            floor = movePlayer(action,floor)
-            moved = True;
-        if(lightOn == true):
+    # Change information
+    if(action == 'move up' or action == 'move down'):
+        newFloor = movePlayer(action,floor)
+        moved = bool(abs(newFloor-floor))
+        floor = newFloor
+        if(lightOn == True):
             pass
-            # check for detection
+            outcome = detected(floor,map)
 
     elif(action == 'inspect'):
-        if(lightOn == true):
-            print("... inspect the ... ",end='')
-            targetObject = input()
-            inspect(floor, combinationsFound, objectsMap);
-            # check for detection
+        if(lightOn == True):
+            print(" the ",end='')
+            targetObject = int(input()) - 1
+            if(targetObject >= 0 and targetObject < OBJECTS):
+                print(map[floor][targetObject].name + ". ")
+                if(map[floor][targetObject].combination == True):
+                    print("Upon inspection you discover the hidden compartment.  Inside is a slip of paper with numbers written on it. ",end='')
+                    comboFound[floor] = True
+                else:
+                    print("You inspect it but find nothing. ",end='')
+            else:
+                print("controls. ",end='')
+            outcome = detected(floor,map)
         else:
-            print("... inspect an object, but it's too dark to see what's in the room.  Maybe if you turned on your flashlight... ",end='')
+            print(" an object, but it's too dark to see what's in the room.  Maybe if you turned on your flashlight... ",end='')
 
-    }
-    else if(action == 'f') {
-        toggleFlashlight(&flashlightOn);
-        flashlightToggled = true;
-    }
-    else if(action == 'q') {
-        return 0;
-    }
-    else {
-        printf("... review the controls. ");
-    }
+    elif(action == 'switch'):
+        lightOn = switchLight(lightOn)
+        lightSwitched = True
 
-    // Final chance of being detected during escape
-    if(floor == 1 && combinationsFound[0] == true && combinationsFound[1] == true &&
-        combinationsFound[2] == true && combinationsFound[3] == true && flashlightOn) {
-        printf("You approach the front door. Hands shaking, you enter the combinations. ");
-        caught = detectedRisk(floor, &flashlightOn, objectsMap);
-        escaped = !caught;
-    }
-    *actions = *actions + 1;
+    elif(action == 'quit'):
+        sys.exit(0)
+
+    else:
+        print("... review your options. ")
+
+    # Endgame check
+    if(floor == 1 and comboFound == ['True']*FLOORS and lightOn):
+        outcome = 2
+
+    actions += 1
+
+#TODO: Endgame
