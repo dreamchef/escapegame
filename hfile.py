@@ -97,7 +97,7 @@ def detected(floor):
             return 1
     return 0
 
-def displayOutcome(outcome):
+def displayOutcome(outcome,actions):
     if(outcome == 1):
         print("\n\nYou no longer hear the lurker, despite straining your ears. ",end='')
         print("Suddenly, you feel a prick on the back of your neck and start to feel faint. ",end='')
