@@ -25,14 +25,14 @@ objects = ['mirror',
 def makeMap():
     shuffle(objects)
 
-    map = [[Object('',False)]*OBJECTS]*FLOORS
+    map = [[Object('',False) for j in range(OBJECTS)] for i in range(FLOORS)]
 
-    i=0
+    k=0
     for floor in map:
         for object in floor:
-            object.name = objects[i]
-            i += 1
-        floor[randint(0,2)].combination = True
+            object.name = objects[k]
+            k += 1
+        floor[randint(0,OBJECTS-1)].combination = True
 
     return map
 
@@ -62,7 +62,7 @@ def movePlayer(direction, floor):
             return floor + 1
     elif (direction == 'move down'):
         if(floor < 1):
-            print("... move, but you're already on the top floor. ")
+            print("but you're already on the bottom floor. ")
             return floor
         else:
             print("... sneak down the stairs. ")
@@ -79,4 +79,4 @@ def switchLight(lightOn):
 
 def detected(floor,map):
     #TODO: implement
-    pass
+    return 0

@@ -52,7 +52,6 @@ while(outcome == 0):
         moved = bool(abs(newFloor-floor))
         floor = newFloor
         if(lightOn == True):
-            pass
             outcome = detected(floor,map)
 
     elif(action == 'inspect'):
