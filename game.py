@@ -52,7 +52,7 @@ while(outcome == 0):
         moved = bool(abs(newFloor-floor))
         floor = newFloor
         if(lightOn == True):
-            outcome = detected(floor,map)
+            outcome = detected(map[floor])
 
     elif(action == 'inspect'):
         if(lightOn == True):
@@ -67,7 +67,7 @@ while(outcome == 0):
                     print("You inspect it but find nothing. ",end='')
             else:
                 print("controls. ",end='')
-            outcome = detected(floor,map)
+            outcome = detected(map[floor])
         else:
             print(" an object, but it's too dark to see what's in the room.  Maybe if you turned on your flashlight... ",end='')
 
@@ -82,9 +82,12 @@ while(outcome == 0):
         print("... review your options. ")
 
     # Endgame check
-    if(floor == 1 and comboFound == ['True']*FLOORS and lightOn):
-        outcome = 2
+    if(floor == 1 and comboFound == ['True']*FLOORS and lightOn and outcome == 0):
+        print("You approach the front door. Hands shaking, you start entering the combinations. ",end='')
+        outcome = detected(map[floor])
+        if(outcome == 0):
+            outcome = 2
 
     actions += 1
 
-#TODO: Endgame
+displayOutcome(outcome)
