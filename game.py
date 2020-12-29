@@ -90,4 +90,4 @@ while(outcome == 0):
 
     actions += 1
 
-displayOutcome(outcome)
+displayOutcome(outcome,actions)

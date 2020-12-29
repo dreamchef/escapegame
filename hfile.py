@@ -84,24 +84,25 @@ def detected(floor):
         print("From the three possible hiding spots: ",end='')
         printObjects(floor)
         print(", you choose ... ",end='')
-        coverObjIdx = int(input()) - 1
-        if(coverObjIdx >= 0 and coverObjIdx < OBJECTS):
+        try:
+            coverObjIdx = int(input()) - 1
+            assert coverObjIdx >= 0 and coverObjIdx < OBJECTS
             elimObjIdx = randint(0,OBJECTS-1)
             if(floor[coverObjIdx].name == floor[elimObjIdx].name):
                 return 1
             else:
-                print("They walk to the other side of the room and look behind the " + floor[elimObjIdx].name + ". Finding nothing, they leave. ",end='')
-        else:
+                print("They walk to the other side of the room and look behind the " + floor[elimObjIdx].name + ". Finding nothing, they leave. You cautiously emerge and turn on your flashlight.",end='')
+        except (ValueError, AssertionError):
             print("... nothing, you're frozen with fear.  Obviously that doesn't work out well for you.  Maybe review those option controls... ",end='')
             return 1
     return 0
 
 def displayOutcome(outcome):
     if(outcome == 1):
-        print("\n\nYou no longer hear the lurker, despite straining your ears. "end='')
-        print("Suddenly, you feel a prick on the back of your neck and start to feel faint. "end='')
-        print("Above you... a shadowy figure... then... nothing... "end='')
-        print("\n\nAfter " + str(actions) + " actions, you were caught by the lurker. "end='');
+        print("\n\nYou no longer hear the lurker, despite straining your ears. ",end='')
+        print("Suddenly, you feel a prick on the back of your neck and start to feel faint. ",end='')
+        print("Above you... a shadowy figure... then... nothing... ",end='')
+        print("\n\nAfter " + str(actions) + " actions, you were caught by the lurker. ",end='');
     else:
-        print("\n\nAfter what seems like an eternity, you unlock all four locks. "end='')
-        print("You slip out the door and escape to freedom. \n\nYou completed the game in " + str(actions) + " actions. "end='')
+        print("\n\nAfter what seems like an eternity, you unlock all four locks. ",end='')
+        print("You slip out the door and escape to freedom. \n\nYou completed the game in " + str(actions) + " actions. ",end='')
