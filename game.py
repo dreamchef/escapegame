@@ -13,7 +13,7 @@ actions = 0
 lightOn = False
 lightSwitched = False
 moved = True
-comboFound = ['False', 'False', 'False', 'False']
+comboFound = [False]*FLOORS
 outcome = 0
 
 map = makeMap();
@@ -33,7 +33,6 @@ while(outcome == 0):
         if(lightOn):
             if(floor == 1):
                 print("The front door is locked by four padlocks. ",end='')
-                print("You see the following objects: ",end='')
             printObjects(map[floor]);
         else:
             print("It's too dark to see anything. ",end='')
@@ -56,17 +55,18 @@ while(outcome == 0):
 
     elif(action == 'inspect'):
         if(lightOn == True):
-            print(" the ",end='')
-            targetObject = int(input()) - 1
-            if(targetObject >= 0 and targetObject < OBJECTS):
+            print(" the ...",end='')
+            try:
+                targetObject = int(input()) - 1
+                assert targetObject >= 0 and targetObject < OBJECTS
                 print(map[floor][targetObject].name + ". ")
                 if(map[floor][targetObject].combination == True):
                     print("Upon inspection you discover the hidden compartment.  Inside is a slip of paper with numbers written on it. ",end='')
                     comboFound[floor] = True
                 else:
                     print("You inspect it but find nothing. ",end='')
-            else:
-                print("controls. ",end='')
+            except(ValueError, AssertionError):
+                print("options. ",end='')
             outcome = detected(map[floor])
         else:
             print(" an object, but it's too dark to see what's in the room.  Maybe if you turned on your flashlight... ",end='')
@@ -82,7 +82,7 @@ while(outcome == 0):
         print("... review your options. ")
 
     # Endgame check
-    if(floor == 1 and comboFound == ['True']*FLOORS and lightOn and outcome == 0):
+    if(floor == 1 and comboFound == [True]*FLOORS and lightOn and outcome == 0):
         print("You approach the front door. Hands shaking, you start entering the combinations. ",end='')
         outcome = detected(map[floor])
         if(outcome == 0):
