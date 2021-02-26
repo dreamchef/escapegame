@@ -6,7 +6,37 @@
 # --Combinations are hidden in objects on each floor.
 # --Enemy may detect you when your flashlight is on.
 # ============================================================= */=
+
+# Update problem: Something that strengthens the experience of evasion and ESCAPE
+# conversations with other people
+# a system of distracting the enemy so you can pass through otherwise impassable areas
+
+from graphics import *
 from hfile import *
+
+# GRAPHICS CONFIGURATION ==================
+
+
+
+win = GraphWin("Escape Game", WIN_W, WIN_H)
+win.setBackground("black")
+
+floors = [0]*FLOORS
+for fl in range(0,FLOORS):
+    floors[fl] = Rectangle(Point(OFFSET,OFFSET+FLOOR_H*fl), Point(OFFSET+FLOOR_W,OFFSET+FLOOR_H*(fl+1)))
+    floors[fl].setWidth(1)
+    floors[fl].setOutline("white")
+    floors[fl].setFill("black")
+    floors[fl].draw(win)
+
+# ========================================
+
+
+
+
+
+
+# GAME LOGIC CONFIGURATION ================
 
 floor = randint(0,3)
 actions = 0
@@ -23,6 +53,8 @@ print("\nACTIONS:\n 'move up'\n 'move down'\n")
 print(" 'switch' (flashlight on/off)\n 'inspect' (an object)\n 'quit'\n")
 print(" '1','2', or '3' to choose object when prompted\n")
 print("\n============ ESCAPE GAME =============\n\n")
+
+# ========================================
 
 while(outcome == 0):
     # State information
