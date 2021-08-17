@@ -5,4 +5,4 @@ Escape a creepy house while being hunted by an enemy.  Four lock combations are 
 &nbsp;
 <br>
 
-![](resources/img/escapegame02.png)|
+![](resources/img/escapegame02.png)
