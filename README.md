@@ -1,18 +1,9 @@
-# Problem
-Text-based experience capturing the feeling of evading and escaping from a powerful enemy
+#Escape Game (2020)
+Escape a creepy house while being hunted by an enemy.  Four lock combations are needed to unlock the front door and escape.  Combinations are hidden around the house.  As you traverse each floor, search possible hiding spots to find them.  But be careful, and use your flashlight sparingly, as this will allow the hunter to detect you.  If they do, you will have on last chance to hide; but if you fail, the house will become your permanent home.  A text-based, horror-themed roguelike written in Python.
+</p>
 
-# Aesthetic Choice
-- -> RPG-style, text story with dialogue interspersed.
+![](resources/img/escapegame01.png)
+&nbsp;
+<br>
 
-# Story Choice
-- -> Amnesia, haunted house, alone
-- Amnesia, haunted house, with friendly NPCs
-
-# Mechanics
-- -> Lock combinations escape
-- Auto-generated story items escape
-- -> Floors and item positions
-- Floors, rooms and item positions
-- -> Flashlight alerts enemy
-- Enemy has known position
-- Communication with friendly NPCs
+![](resources/img/escapegame02.png)|
